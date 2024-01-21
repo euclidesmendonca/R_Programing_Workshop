@@ -18,5 +18,5 @@ https://download1.rstudio.org/electron/macos/RStudio-2023.12.0-369.dmg
 
 If you experience any difficulty feel free to reach  me at euclides.demendoncafilho@mail.mcgill.ca
 
-Best,
+Best,\
 Euclides
