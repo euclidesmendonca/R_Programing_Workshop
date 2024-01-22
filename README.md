@@ -15,6 +15,7 @@ For MAC: \
 https://cran.r-project.org/bin/macosx/big-sur-arm64/base/R-4.3.2-arm64.pkg
 https://download1.rstudio.org/electron/macos/RStudio-2023.12.0-369.dmg
 
+Our Zoom link: https://mcgill.zoom.us/j/85879970088
 
 If you experience any difficulty feel free to reach  me at euclides.demendoncafilho@mail.mcgill.ca
 
