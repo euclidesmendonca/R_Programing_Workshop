@@ -1,6 +1,7 @@
 # Set working directory
-setwd("C:/Users/Euclides/Documents/GitHub/R_Programing_Workshop/")
-getwd() #Check your workd directory path
+setwd("ADDD YOUR  PATH HERE")
+getwd() #Check your work directory path
+
 # Basic operations
 4+4
 4*4
@@ -47,7 +48,6 @@ ses <- factor(ses, levels = c('below poverty', "average", "upper"))
 levels(ses)
 
 # Logical Vectors
-
 l <- c(TRUE, TRUE, FALSE, FALSE, TRUE)
 l == l
 l != l
@@ -120,7 +120,7 @@ colnames(student.heights)
 student.heights.m <- student.heights [ student.heights$sex == "masculino" , ]
 student.heights.f <- student.heights [ student.heights$sex == "feminino" , ]
 
-# Recode the variable sex values
+# Recoding sex variable
 
 student.heights$sex <- ifelse( student.heights$sex == "masculino",
                                yes = "Males",
@@ -151,7 +151,7 @@ install.packages("psych", dependencies = TRUE)
 # Get descriptives
 describe(x = student.heights[,c("height", "fathers_height", "mother_height")])
 
-# Basic R graphis
+# Basic R graphs ####
 hist(x = student.heights$height,
      xlab = "Student height (cm)",
      main = "Distribution",
@@ -182,7 +182,7 @@ chart.Correlation(
   student.heights[,c("height", "sexo_dummy", "fathers_height", "mother_height") ]
   )
 
-# Saving the dataset
+# Saving the dataset ####
 write_sas(data = student.heights, path = "Undergraduate_anthropometric_updated.sav")
 
 
