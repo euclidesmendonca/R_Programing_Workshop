@@ -1,6 +1,6 @@
 # Set working directory
 setwd("C:/Users/Euclides/Documents/GitHub/R_Programing_Workshop/")
-
+getwd() #Check your workd directory path
 # Basic operations
 4+4
 4*4
@@ -96,5 +96,95 @@ my_dataframe[c(1,3) ,]
 my_dataframe[ my_dataframe$gender == "Man", ]
 
 my_dataframe[c(1,3), c(1,3) ]
+
+# Adding a variable
+my_dataframe$height <- c(181, 164, 176)
+my_dataframe[ ,"height" ] <- c(181,164,176)
+
+my_dataframe$Ratio <- my_dataframe$height / my_dataframe$age # Ratio between height and age
+colnames(my_dataframe)
+
+# Installing and starting packages
+install.packages("haven")   # For reading SPSS files
+install.packages("ggplot2") # For making amazing graphs
+install.packages("psych")   # For descriptives
+
+# Activating packages
+library(haven)
+student.heights <- read_spss(file = "C:/Users/Euclides/Documents/GitHub/R_Programing_Workshop/Undergraduate_anthropometric.sav")
+student.heights <- read_spss(file = "Undergraduate_anthropometric.sav")
+student.heights <- as.data.frame(student.heights)
+
+colnames(student.heights)
+
+student.heights.m <- student.heights [ student.heights$sex == "masculino" , ]
+student.heights.f <- student.heights [ student.heights$sex == "feminino" , ]
+
+# Recode the variable sex values
+
+student.heights$sex <- ifelse( student.heights$sex == "masculino",
+                               yes = "Males",
+                               no = "Females"
+                               )
+
+student.heights$height_cat <- ifelse( student.heights$height > median(student.heights$height),
+                                      yes = "Tall",
+                                      no = "Short" 
+                                      )
+
+student.heights.m <- student.heights [ student.heights$sex == "Males" , ]
+student.heights.f <- student.heights [ student.heights$sex == "Females" , ]
+
+student.heights[, c( "height", "fathers_height", "mother_height")]
+
+class(student.heights)
+mean(student.heights[, c( "height", "fathers_height", "mother_height")])
+mean( student.heights[, "height"] )
+apply(X = student.heights[, c( "height", "fathers_height", "mother_height")],
+      MARGIN = 2,
+      FUN = mean)
+
+# Reading the psych package
+library(psych)
+install.packages("psych", dependencies = TRUE)
+
+# Get descriptives
+describe(x = student.heights[,c("height", "fathers_height", "mother_height")])
+
+# Basic R graphis
+hist(x = student.heights$height,
+     xlab = "Student height (cm)",
+     main = "Distribution",
+     breaks = 20,col = "#a65fc9")
+
+plot(y= student.heights$height,x= student.heights$fathers_height,
+     xlab = "Father's height (cm)",
+     ylab= "Students' height (cm)",pch=0
+     )
+
+boxplot(student.heights$height ~student.heights$sex,
+        xlab =  "Sex",
+        ylab = "Height in cm",
+        col="lightblue"
+          )
+
+boxplot(student.heights$height ~student.heights$height_cat,
+        xlab =  "Group",
+        ylab = "Height in cm",
+        col="lightblue"
+)
+
+# Install.package
+install.packages("PerformanceAnalytics")
+library(PerformanceAnalytics)
+
+chart.Correlation(
+  student.heights[,c("height", "sexo_dummy", "fathers_height", "mother_height") ]
+  )
+
+# Saving the dataset
+write_sas(data = student.heights, path = "Undergraduate_anthropometric_updated.sav")
+
+
 
 
